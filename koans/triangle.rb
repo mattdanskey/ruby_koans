@@ -25,11 +25,8 @@ def triangle(a, b, c)
 end
 
 def validate_triangle(*sides)
-  # sides.each { |side| raise TriangleError if side <= 0 } # not needed
-  sides.permutation do |combo|
-    if combo[0] >= combo[1] + combo[2]
-      raise TriangleError
-    end
+  if sides.max * 2 >= sides.reduce(:+)
+    raise TriangleError
   end
 end
 
