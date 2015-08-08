@@ -14,7 +14,23 @@
 #   about_triangle_project_2.rb
 #
 def triangle(a, b, c)
-  # WRITE THIS CODE
+  validate_triangle a, b, c
+  if a == b && a == c
+    :equilateral
+  elsif a == b || a == c || b == c
+    :isosceles
+  else
+    :scalene
+  end
+end
+
+def validate_triangle(*sides)
+  # sides.each { |side| raise TriangleError if side <= 0 } # not needed
+  sides.permutation do |combo|
+    if combo[0] >= combo[1] + combo[2]
+      raise TriangleError
+    end
+  end
 end
 
 # Error class used in part 2.  No need to change this code.
